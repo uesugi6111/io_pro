@@ -1,0 +1,25 @@
+[package]
+name = "io_pro"
+version = "0.1.0"
+authors = ["uesugi6111 <59960488+aburaya6111@users.noreply.github.com>"]
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[[bin]]
+name = "io_pro"
+path = "src/bin/main_io_pro.rs"
+
+[[bin]]
+name = "proconio"
+path = "src/bin/main_proconio.rs"
+
+[[bin]]
+name = "generator"
+path = "src/bin/generator.rs"
+
+
+
+
+[dependencies]
+proconio = { version = "=0.3.4", features = ["derive"] }
