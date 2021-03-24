@@ -17,7 +17,7 @@ cargo build --release --bin proconio
 計測
 ```
 time ./target/release/io_pro < ./test.in
-time ./target/release/proconio  < ./test.in
+time ./target/release/proconio < ./test.in
 ```
 
 ## 結果
