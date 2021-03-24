@@ -1,9 +1,36 @@
 #[macro_export]
-macro_rules! input{(sc=$sc:expr,$($r:tt)*)=>{input_inner!{$sc,$($r)*}};($($r:tt)*)=>{let mut sc=fast_input::Scanner::new(std::io::stdin().lock(),4096);input_inner!{sc,$($r)*}};}
+macro_rules! input{
+    (sc=$sc:expr,$($r:tt)*)=>{
+        input_inner!{$sc,$($r)*}
+    };
+    ($($r:tt)*)=>{
+        let mut sc=fast_input::Scanner::new(std::io::stdin().lock(),4096);
+        input_inner!{sc,$($r)*}
+    };
+}
+
 #[macro_export]
-macro_rules! input_inner{($sc:expr)=>{};($sc:expr,)=>{};($sc:expr,$var:ident:$t:tt$($r:tt)*)=>{let $var=read_value!($sc,$t);input_inner!{$sc $($r)*}};}
+macro_rules! input_inner{
+    ($sc:expr)=>{};
+    ($sc:expr,)=>{};
+    ($sc:expr,$var:ident:$t:tt$($r:tt)*)=>{
+        let $var=read_value!($sc,$t);
+        input_inner!{$sc $($r)*}
+    };
+}
+
 #[macro_export]
-macro_rules! read_value{($sc:expr,($($t:tt),*))=>{($(read_value!($sc,$t)),*)};($sc:expr,[$t:tt;$len:expr])=>{(0..$len).map(|_|read_value!($sc,$t)).collect::<Vec<_>>()};($sc:expr,Chars)=>{read_value!($sc,String).chars().collect::<Vec<char>>()};($sc:expr,Usize1)=>{read_value!($sc,usize)-1};($sc:expr,$t:ty)=>{$sc.next::<$t>()};}
+macro_rules! read_value{
+    ($sc:expr,($($t:tt),*))=>{
+        ($(read_value!($sc,$t)),*)
+    };
+    ($sc:expr,[$t:tt;$len:expr])=>{
+        (0..$len).map(|_|read_value!($sc,$t)).collect::<Vec<_>>()
+    };
+    ($sc:expr,Chars)=>{read_value!($sc,String).chars().collect::<Vec<char>>()};
+    ($sc:expr,Usize1)=>{read_value!($sc,usize)-1};
+    ($sc:expr,$t:ty)=>{$sc.next::<$t>()};
+}
 pub struct Scanner {
     buf: Vec<u8>,
     pos: usize,
