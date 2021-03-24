@@ -21,7 +21,7 @@ time ./target/release/proconio < ./test.in
 ```
 
 ## 結果
-5回の平均
+5回の平均  
 単位はms
 |        |  1e5  |    1e7   |
 |  ----  | ----  |   ----   |
