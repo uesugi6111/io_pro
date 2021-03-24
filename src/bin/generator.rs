@@ -3,7 +3,7 @@ use std::io::{BufWriter, Write};
 
 fn main() {
     // 生成する入力データの行数（10^7）
-    let count = 10usize.pow(5);
+    let count = 10usize.pow(7);
 
     // 標準出力をロックし、BufWriterで包んでバッファリングする。
     let stdout = std::io::stdout();
