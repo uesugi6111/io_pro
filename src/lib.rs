@@ -4,7 +4,7 @@ macro_rules! input{
         input_inner!{$sc,$($r)*}
     };
     ($($r:tt)*)=>{
-        let mut sc=fast_input::Scanner::new(std::io::stdin().lock(),4096);
+        let mut sc=fast_input::Scanner::new(std::io::stdin().lock());
         input_inner!{sc,$($r)*}
     };
 }
@@ -32,34 +32,34 @@ macro_rules! read_value{
     ($sc:expr,$t:ty)=>{$sc.next::<$t>()};
 }
 pub struct Scanner {
-    buf: Vec<u8>,
-    pos: usize,
+    s: Box<str>,
+    input: std::iter::Peekable<std::str::SplitWhitespace<'static>>,
 }
 impl Scanner {
-    pub fn new<R: std::io::Read>(mut reader: R, estimated: usize) -> Self {
-        let mut buf = Vec::with_capacity(estimated);
-        let _ = std::io::copy(&mut reader, &mut buf).unwrap();
-        if buf.last() != Some(&b'\n') {
-            panic!("{}", 0);
-        }
-        Scanner { buf, pos: 0 }
+    pub fn new<R: std::io::Read>(mut reader: R) -> Self {
+        let s = {
+            let mut s = String::new();
+            reader.read_to_string(&mut s).unwrap();
+            s.into_boxed_str()
+        };
+        let mut sc = Scanner {
+            s,
+            input: "".split_whitespace().peekable(),
+        };
+        use std::mem;
+        let s: &'static str = unsafe { mem::transmute(&*sc.s) };
+        sc.input = s.split_whitespace().peekable();
+        sc
     }
     #[inline]
     pub fn next<T: std::str::FromStr>(&mut self) -> T
     where
         T::Err: std::fmt::Debug,
     {
-        let mut start = None;
-        loop {
-            match (self.buf[self.pos], start.is_some()) {
-                (b' ', true) | (b'\n', true) => break,
-                (_, true) | (b' ', false) | (b'\n', false) | (b'\r', false) => self.pos += 1,
-                (_, false) => start = Some(self.pos),
-            }
-        }
-        let target = &self.buf[start.unwrap()..self.pos];
-        unsafe { std::str::from_utf8_unchecked(target) }
-            .parse()
+        self.input
+            .next()
             .unwrap()
+            .parse::<T>()
+            .expect("Parse error")
     }
 }

@@ -2,7 +2,7 @@ use io_pro::{input, input_inner, read_value, Scanner};
 use std::io;
 fn main() {
     let stdin = io::stdin();
-    let mut sc = Scanner::new(stdin.lock(), 8192 * 2);
+    let mut sc = Scanner::new(stdin.lock());
     input!(sc = sc, n: usize);
     for i in 0..n {
         input!(sc = sc, a: u32, b: f64, c: String);
