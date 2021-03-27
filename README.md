@@ -25,5 +25,5 @@ time ./target/release/proconio < ./test.in
 単位はms
 |        |  1e5  |    1e7   |
 |  ----  | ----  |   ----   |
-|proconio|  40   |  2315.6  |
-| io_pro |  66   |  5492.4  |
+|proconio|  40ms   |  2315.6ms  |
+| io_pro |  35.2ms   |  1839.4ms  |
