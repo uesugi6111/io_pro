@@ -17,6 +17,10 @@ macro_rules! input_inner{
         let $var=read_value!($sc,$t);
         input_inner!{$sc $($r)*}
     };
+    ($sc:expr,mut $var:ident:$t:tt$($r:tt)*)=>{
+        let mut $var=read_value!($sc,$t);
+        input_inner!{$sc $($r)*}
+    };
 }
 
 #[macro_export]
