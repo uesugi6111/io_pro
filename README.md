@@ -2,7 +2,7 @@
 
 Standard input macro for competitive programming
 
-## how to use 
+## Usage
 one input 
 ```rust
 input!(n:usize, a:[i64;n]);
