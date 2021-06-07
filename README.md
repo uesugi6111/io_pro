@@ -1,28 +1,28 @@
 # io_pro
 
-競技プログラミング用の標準入力
+Standard input macro for competitive programming
 
-## 計測方法
-テストケース作成
+## How to measure
+generate testcase
 ```
 cargo run --release --bin generator > test.in
 ```
 
-ビルド
+build
 ```
 cargo build --release --bin io_pro
 cargo build --release --bin proconio
 ```
 
-計測
+measure
 ```
 time ./target/release/io_pro < ./test.in
 time ./target/release/proconio < ./test.in
 ```
 
-## 結果
-5回の平均  
-単位はms
+## result
+Average of 5 times
+
 |        |  1e5  |    1e7   |
 |  ----  | ----  |   ----   |
 |proconio|  40ms   |  2315.6ms  |
