@@ -2,6 +2,25 @@
 
 Standard input macro for competitive programming
 
+## how to use 
+one input 
+```
+    input!(n:usize, a:[i64;n]);
+```
+
+multiple inputs
+
+```
+    let mut sc = io_pro::Scanner::new(std::io::stdin().lock());
+    input!(sc = sc, t: usize);
+    for _ in 0..t {
+        input!(sc = sc, n: usize);
+        
+    }
+```
+
+
+
 ## How to measure
 generate testcase
 ```
