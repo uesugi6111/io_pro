@@ -33,7 +33,7 @@ macro_rules! read_value{
 }
 pub struct Scanner {
     s: Box<str>,
-    input: std::iter::Peekable<std::str::SplitAsciiWhitespace<'static>>,
+    input: std::str::SplitAsciiWhitespace<'static>,
 }
 impl Scanner {
     pub fn new<R: std::io::Read>(mut reader: R) -> Self {
@@ -44,11 +44,11 @@ impl Scanner {
         };
         let mut sc = Scanner {
             s,
-            input: "".split_ascii_whitespace().peekable(),
+            input: "".split_ascii_whitespace(),
         };
         use std::mem;
         let s: &'static str = unsafe { mem::transmute(&*sc.s) };
-        sc.input = s.split_ascii_whitespace().peekable();
+        sc.input = s.split_ascii_whitespace();
         sc
     }
     #[inline]
