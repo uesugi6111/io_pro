@@ -1,4 +1,5 @@
-use io_pro::{input, input_inner, read_value, Scanner};
+use io_pro::io_pro::Scanner;
+use io_pro::{input, input_inner, read_value};
 use std::io;
 fn main() {
     let stdin = io::stdin();
